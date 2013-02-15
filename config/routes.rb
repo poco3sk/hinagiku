@@ -1,4 +1,4 @@
 Hinagiku::Application.routes.draw do
-  get "tasks/index"
+  root to: "tasks#index"
   resource :tasks
 end
