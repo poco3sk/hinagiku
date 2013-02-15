@@ -12,5 +12,5 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tm
+/tmp
 /.idea

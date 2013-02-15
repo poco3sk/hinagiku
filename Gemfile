@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 
 group :test do
+  gem 'capybara'
   gem 'growl'
   gem 'guard-rspec'
   gem 'guard-spork'
