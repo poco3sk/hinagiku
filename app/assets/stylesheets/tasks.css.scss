@@ -2,3 +2,37 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .b { font-weight: bold }
+
+table.tasks {
+  width: 560px;
+  margin: 5px auto;
+  background-color: #eee;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  tr {
+    border: solid 1px #ccc;
+  }
+
+  td {
+    padding: 5px;
+  }
+
+  col.name {
+    width: 320px;
+  }
+
+  col.due_date {
+    background-color: #ddd;
+  }
+}
+
+div#task_due_date {
+  text-align: right;
+  color: #f00;
+}
+
+div#task_description {
+  border: solid 1px #888;
+  padding: 5px;
+}

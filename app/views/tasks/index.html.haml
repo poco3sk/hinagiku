@@ -1,1 +1,9 @@
 %h1 タスクの一覧
+
+%table.tasks
+  %col.name
+  %col.due_date
+  - @tasks.each do |task|
+    %tr
+      %td= link_to task.name, task
+      %td= task.due_date
