@@ -15,7 +15,9 @@ gem 'jquery-rails'
 gem 'haml-rails'
 
 group :test do
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'growl'
   gem 'guard-rspec'
   gem 'guard-spork'

@@ -11,8 +11,10 @@
 #  updated_at  :datetime         not null
 #
 
-require 'spec_helper'
+# Read about factories at https://github.com/thoughtbot/factory_girl
 
-describe Task do
-  pending "add some examples to (or delete) #{__FILE__}"
+FactoryGirl.define do
+  factory :task do
+
+  end
 end
