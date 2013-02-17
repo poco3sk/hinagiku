@@ -16,6 +16,7 @@ gem 'haml-rails'
 
 group :test do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  gem 'better_errors'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'growl'
