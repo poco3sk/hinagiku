@@ -26,4 +26,5 @@ group :test do
   gem 'rr'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'timecop'
 end
