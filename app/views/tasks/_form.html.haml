@@ -1,0 +1,18 @@
+= form_for @task do |form|
+  %ul
+    %li
+      = form.label :name, "名称"
+      = form.text_field :name
+    %li
+      = form.label :due_date, "期限"
+      = form.date_select :due_date, use_month_numbers: true,
+          order: [:year, :month, :day],
+          start_year: Time.now.year,
+          end_year: Time.now.next_year.year
+    %li
+      = form.check_box :done
+      = form.label :done, "実施済み"
+    %li
+      = form.label :description, "説明"
+      = form.text_area :description
+    %li= form.submit "送信"
