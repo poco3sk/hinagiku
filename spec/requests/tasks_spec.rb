@@ -56,30 +56,27 @@ describe "Tasks", type: :feature do
   describe "POST CREATE" do
     before do
       @time = Time.now
-      Timecop.freeze @time
+      @expect_name        = "Sample Task"
+      @expect_description = "Sample Description"
     end
 
     it "create task" do
       visit new_task_path
-      expect_name = "Sample Task"
-      expect_description = "Sample Description"
+
       within("form") do |form|
-        fill_in '名称', with: expect_name
+        fill_in '名称', with: @expect_name
         select @time.year, from: 'task_due_date_1i'
         select @time.month, from: 'task_due_date_2i'
         select @time.day, from: 'task_due_date_3i'
         find("input#task_done[type=checkbox]").set(true)
-        fill_in '説明', with: expect_description
+        fill_in '説明', with: @expect_description
       end
+
       click_button '送信'
 
-      page.should have_content(expect_name)
-      page.should have_content(expect_description)
+      page.should have_content(@expect_name)
+      page.should have_content(@expect_description)
       page.should have_content(@time.strftime("%Y-%m-%d"))
-    end
-
-    after do
-      Timecop.return
     end
   end
 end
