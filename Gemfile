@@ -11,12 +11,14 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'haml-rails'
+
+group :development, :test do
+  gem 'better_errors'
+end
 
 group :test do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
-  gem 'better_errors'
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'growl'
