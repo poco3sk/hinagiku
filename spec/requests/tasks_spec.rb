@@ -79,4 +79,23 @@ describe "Tasks", type: :feature do
       page.should have_content(@time.strftime("%Y-%m-%d"))
     end
   end
+
+  describe "GET EDIT" do
+    before do
+      @task = Task.find(rand(5) + 1)
+    end
+
+    it "edit task page" do
+      visit "/tasks/#{@task.id}/edit"
+
+      within("form") do |form|
+        find("input#task_name[type=text]").value.should have_content(@task.name)
+        find("select#task_due_date_1i").value.should have_content(@task.due_date.year)
+        find("select#task_due_date_2i").value.should have_content(@task.due_date.month)
+        find("select#task_due_date_3i").value.should have_content(@task.due_date.day)
+        find("input#task_done[type=checkbox]").should_not be_checked
+        find("textarea#task_description").should have_content(@task.description)
+      end
+    end
+  end
 end
