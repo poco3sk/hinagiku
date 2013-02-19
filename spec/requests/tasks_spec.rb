@@ -24,7 +24,7 @@ describe "Tasks", type: :feature do
     end
   end
 
-  describe "POST CREATE" do
+  describe "create" do
     before do
       @time = Time.now
       @expect_name        = "Sample Task"
@@ -51,7 +51,7 @@ describe "Tasks", type: :feature do
     end
   end
 
-  describe "GET EDIT" do
+  describe "edit" do
     before do
       @task = Task.find(rand(5) + 1)
     end
@@ -70,7 +70,7 @@ describe "Tasks", type: :feature do
     end
   end
 
-  describe "PUT UPDATE" do
+  describe "update" do
     before do
       @task = Task.find(rand(5) + 1)
       update_str = "UPDATE TEST"
@@ -79,7 +79,7 @@ describe "Tasks", type: :feature do
       @task.description += update_str
     end
 
-    it "update task page"  do
+    it "update task"  do
       visit "/tasks/#{@task.id}/edit"
 
       within("form") do |form|
