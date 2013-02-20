@@ -3,11 +3,14 @@
 %table.tasks
   %col.name
   %col.due_date
+  %col.links
   - @tasks.each do |task|
     %tr
       %td= link_to task.name, task
       %td= task.due_date
-      %td= link_to "修正", [ :edit, task ]
-      %td= link_to "削除", task, method: :delete, confirm: "本当に削除しますか？"
+      %td
+        = link_to "修正", [ :edit, task ]
+        = link_to "完了", [ :finish, task ], method: :put
+        = link_to "削除", task, method: :delete, confirm: "本当に削除しますか？"
 
 = link_to "新規登録", [ :new, :task ]
