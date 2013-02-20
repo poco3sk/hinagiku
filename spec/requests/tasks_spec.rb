@@ -98,4 +98,19 @@ describe "Tasks", type: :feature do
       page.should have_content(@task.due_date.strftime("%Y-%m-%d"))
     end
   end
+
+  describe "done" do
+    before do
+      Task.first.update_attribute(:done, true)
+      Task.last.update_attribute(:done, true)
+    end
+
+    it "done link" do
+      visit root_path
+      click_link "完了したタスク"
+      find("li.selected").should have_content("完了したタスク")
+      click_link "未完了タスク"
+      find("li.selected").should have_content("未完了タスク")
+    end
+  end
 end
