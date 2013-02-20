@@ -67,6 +67,5 @@ describe TasksController do
 
       Task.find(@task.id).done.should be_false
     end
-
   end
 end
