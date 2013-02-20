@@ -3,6 +3,11 @@ class TasksController < ApplicationController
     @tasks = Task.where(done: false)
   end
 
+  def done
+    @tasks = Task.where(done: true)
+    render :index
+  end
+
   def show
     @task = Task.find(params[:id])
   end

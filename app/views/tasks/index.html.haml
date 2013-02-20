@@ -1,5 +1,16 @@
 %h1 タスクの一覧
 
+%ul.navigation
+  - if params[:action] == "index"
+    %li.selected 未完了タスク
+  - else
+    %li= link_to "未完了のタスク", :tasks
+
+  - if params[:action] == "done"
+    %li.selected 完了タスク
+  - else
+    %li= link_to "完了のタスク", [ :done, :tasks ]
+
 %table.tasks
   %col.name
   %col.due_date
