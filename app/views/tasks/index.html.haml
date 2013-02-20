@@ -4,12 +4,12 @@
   - if params[:action] == "index"
     %li.selected 未完了タスク
   - else
-    %li= link_to "未完了のタスク", :tasks
+    %li= link_to "未完了タスク", :tasks
 
   - if params[:action] == "done"
-    %li.selected 完了タスク
+    %li.selected 完了したタスク
   - else
-    %li= link_to "完了のタスク", [ :done, :tasks ]
+    %li= link_to "完了したタスク", [ :done, :tasks ]
 
 %table.tasks
   %col.name
