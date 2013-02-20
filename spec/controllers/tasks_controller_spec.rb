@@ -28,4 +28,17 @@ describe TasksController do
       Task.count.should == 4
     end
   end
+
+  describe "finish" do
+    before do
+      @task = Task.find(rand(5) + 1)
+    end
+
+    it "done task" do
+      request.env["HTTP_REFERER"] = root_path
+      put :finish, id: @task.id
+
+      Task.find(@task.id).done.should be_true
+    end
+  end
 end
