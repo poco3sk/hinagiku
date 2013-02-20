@@ -19,12 +19,6 @@
     %tr
       %td= link_to task.name, task
       %td= task.due_date
-      %td
-        = link_to "修正", [ :edit, task ]
-        - if task.done?
-          = link_to "戻す", [ :restart, task ], method: :put
-        - else
-          = link_to "完了", [ :finish, task ], method: :put
-        = delete_link task
+      %td!= link_for task
 
 = link_to "新規登録", [ :new, :task ]
