@@ -25,6 +25,6 @@
           = link_to "戻す", [ :restart, task ], method: :put
         - else
           = link_to "完了", [ :finish, task ], method: :put
-        = link_to "削除", task, method: :delete, confirm: "本当に削除しますか？"
+        = delete_link task
 
 = link_to "新規登録", [ :new, :task ]
