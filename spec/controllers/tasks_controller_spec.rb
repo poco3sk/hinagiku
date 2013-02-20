@@ -41,4 +41,17 @@ describe TasksController do
       Task.find(@task.id).done.should be_true
     end
   end
+
+  describe "done" do
+    before do
+      Task.first.update_attribute(:done, true)
+      Task.last.update_attribute(:done, true)
+    end
+
+    it "done list" do
+      get :done
+
+      assigns(:tasks).count.should == 2
+    end
+  end
 end
