@@ -28,6 +28,6 @@ group :test do
   gem 'rb-fsevent'
   gem 'rr'
   gem 'rspec-rails'
-  gem 'simplecov'
+  gem 'simplecov', require: false
   gem 'timecop'
 end
