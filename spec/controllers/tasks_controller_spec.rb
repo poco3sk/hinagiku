@@ -54,4 +54,19 @@ describe TasksController do
       assigns(:tasks).count.should == 2
     end
   end
+
+  describe "restart" do
+    before do
+      @task = Task.find(rand(5) + 1)
+      @task.update_attribute(:done, true)
+    end
+
+    it "restart task" do
+      request.env["HTTP_REFERER"] = root_path
+      put :restart, id: @task.id
+
+      Task.find(@task.id).done.should be_false
+    end
+
+  end
 end
