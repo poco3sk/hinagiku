@@ -42,4 +42,10 @@ class TasksController < ApplicationController
     @task.update_attribute(:done, true)
     redirect_to :back
   end
+
+  def restart
+    @task = Task.find(params[:id])
+    @task.update_attribute(:done, false)
+    redirect_to :back
+  end
 end
