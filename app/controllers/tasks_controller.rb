@@ -8,6 +8,12 @@ class TasksController < ApplicationController
     render :index
   end
 
+  def search
+    @tasks = Task.undone
+    @tasks = @tasks.search(params[:query]) if params[:query].present?
+    render :index
+  end
+
   def show
     @task = Task.find(params[:id])
   end

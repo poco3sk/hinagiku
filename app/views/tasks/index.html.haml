@@ -1,5 +1,9 @@
 %h1 タスクの一覧
 
+= form_tag [ :search, :tasks ], method: :get, style: "text-align: right" do
+  = text_field_tag :query, params[:query]
+  = submit_tag "検索"
+
 %ul.navigation
   - if params[:action] == "index"
     %li.selected 未完了タスク
