@@ -15,7 +15,7 @@ describe "Tasks", type: :feature do
     it "task form" do
       visit new_task_path
 
-      find("select#task_due_date_1i").should have_content([@year, @year + 1].join)
+      find("select#task_due_date_1i").should have_content([@year, @year + 1].join(" "))
       find("input#task_done[type=checkbox]").should_not be_checked
     end
 
