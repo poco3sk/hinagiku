@@ -113,4 +113,23 @@ describe "Tasks", type: :feature do
       find("li.selected").should have_content("未完了タスク")
     end
   end
+
+  describe "search" do
+    before do
+      @expect_name = 'Check Search Name'
+      Task.first.update_attribute(:name, "Hoge %s Moge" % @expect_name)
+    end
+
+    it "search name task" do
+      visit root_path
+
+      within("form") do
+        find("input#query[type=text]").set(@expect_name)
+        click_button "検索"
+      end
+
+      page.should_not have_content("Task Name")
+      page.should have_content(@expect_name)
+    end
+  end
 end
