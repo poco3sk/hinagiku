@@ -12,6 +12,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'kaminari'
 
 group :development, :test do
   gem 'better_errors'

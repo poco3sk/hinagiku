@@ -25,4 +25,6 @@
       %td= task.due_date
       %td!= link_for task
 
+= paginate @tasks
+
 = link_to "新規登録", [ :new, :task ]

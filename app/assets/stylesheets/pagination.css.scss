@@ -1,0 +1,17 @@
+.pagination {
+  text-align: center;
+  padding: 5px;
+
+  a {
+    background-color: #666;
+    color: #fff;
+    padding: 5px;
+  }
+
+  .current {
+    background-color: #ccc;
+    font-weight: bold;
+    font-style: normal;
+    padding: 5px;
+  }
+}
