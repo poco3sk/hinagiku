@@ -2,14 +2,31 @@ require 'spec_helper'
 
 describe TasksController do
   before do
+    2.times { create(:category) }
     5.times { create(:task) }
     @task = Task.find(rand(5) + 1)
   end
 
   describe "index" do
-    it "get" do
-      get :index
-      assigns(:tasks).count.should == 5
+    context "set params category_id" do
+      before do
+        @target_category  = Category.last
+        Task.last.update_attribute(:category_id, @target_category.id)
+      end
+
+      it "get category task" do
+        get :index, category_id: @target_category.id
+
+        assigns(:tasks).count.should == 1
+      end
+    end
+
+    context "not set params nothing" do
+      it "get" do
+        get :index
+
+        assigns(:tasks).count.should == 5
+      end
     end
   end
 
@@ -112,14 +129,25 @@ describe TasksController do
 
   describe "done" do
     before do
+      @target_category = Category.first
       Task.first.update_attribute(:done, true)
-      Task.last.update_attribute(:done, true)
+      Task.last.update_attributes({ done: true, category_id: @target_category.id })
     end
 
-    it "done list" do
-      get :done
+    context "set params category_id" do
+      it "category done list" do
+        get :done, category_id: @target_category.id
 
-      assigns(:tasks).count.should == 2
+        assigns(:tasks).count.should == 1
+      end
+    end
+
+    context "not set params category_id" do
+      it "done list" do
+        get :done
+
+        assigns(:tasks).count.should == 2
+      end
     end
   end
 
