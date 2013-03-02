@@ -7,9 +7,9 @@
 #  description :text
 #  due_date    :date
 #  done        :boolean
+#  category_id :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :integer
 #
 
 class Task < ActiveRecord::Base
