@@ -2,4 +2,7 @@ ja:
   activerecord:
     attributes:
       task:
-        name: "タスク名"
+        name: タスク名
+        description: 説明
+        due_date: 期限
+        done: 実施済み
