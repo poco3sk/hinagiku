@@ -16,11 +16,13 @@ gem 'kaminari'
 
 group :development, :test do
   gem 'better_errors'
+  gem 'rspec-rails'
 end
 
 group :test do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'growl'
   gem 'guard-rspec'
@@ -28,7 +30,7 @@ group :test do
   gem 'rb-readline'
   gem 'rb-fsevent'
   gem 'rr'
-  gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'timecop'
 end
