@@ -43,8 +43,13 @@ ul#categories {
   margin: 15px auto 5px;
   padding: 10px;
   border: dotted 1px #ccc;
+
   li {
     display: inline;
     padding: 5px;
+  }
+
+  li.selected {
+    font-weight: bold;
   }
 }
