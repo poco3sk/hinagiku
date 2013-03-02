@@ -1,6 +1,11 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.undone.page params[:page]
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @tasks = @category.tasks.undone.page params[:page]
+    else
+      @tasks = Task.undone.page params[:page]
+    end
   end
 
   def done
