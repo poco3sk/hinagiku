@@ -21,6 +21,39 @@ describe TasksController do
     end
   end
 
+  describe "create" do
+    before do
+      request.env[:HTTP_REFERER] = root_path
+      @params     = { "task" =>
+        {
+          "name"          => "Task Name",
+          "due_date(1i)"  => "2013",
+          "due_date(2i)"  => "3",
+          "due_date(3i)"  => "2",
+          "done"          => "0",
+          "description"   => "Task Description"
+        }
+      }
+    end
+
+    context "task create" do
+      it "redirect to back" do
+        post :create, @params
+
+        response.should redirect_to(task_path(assigns(:task)))
+      end
+    end
+
+    context "task not valid" do
+      it "render new" do
+        @params["task"]["name"] = ""
+        post :create, @params
+
+        response.should render_template(:new)
+      end
+    end
+  end
+
   describe "destroy" do
     it "delete" do
       delete :destroy, id: @task.id
