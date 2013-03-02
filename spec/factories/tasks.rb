@@ -17,7 +17,7 @@
 FactoryGirl.define do
   factory :task do
     sequence(:name) { |n| "Task Name #{n}" }
-    description { "Description\n" * rand(10) }
+    description { "Description\n" * rand(5) }
     due_date { Time.now + rand(100).days }
     done false
   end
