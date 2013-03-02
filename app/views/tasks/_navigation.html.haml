@@ -1,0 +1,10 @@
+%ul.navigation
+  - if params[:action] == "index"
+    %li.selected 未完了タスク
+  - else
+    %li= link_to "未完了タスク", [@category, :tasks ]
+
+  - if params[:action] == "done"
+    %li.selected 完了したタスク
+  - else
+    %li= link_to "完了したタスク", [ :done, @category, :tasks ]

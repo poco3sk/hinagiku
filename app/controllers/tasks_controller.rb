@@ -9,7 +9,13 @@ class TasksController < ApplicationController
   end
 
   def done
-    @tasks = Task.done.page params[:page]
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @tasks    = @category.tasks.done.page params[:page]
+    else
+      @tasks = Task.done.page params[:page]
+    end
+
     render :index
   end
 

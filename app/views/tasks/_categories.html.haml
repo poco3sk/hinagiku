@@ -1,10 +1,11 @@
+- action = params[:action] == "done" ? :done : nil
 %ul#categories
   - if @category
-    %li= link_to "全部", :tasks
+    %li= link_to "全部", [ action, :tasks ]
   - else
     %li.selected 全部
   - Category.all.each do |c|
     - if @category != c
-      %li= link_to c.name, [ c, :tasks ]
+      %li= link_to c.name, [ action, c, :tasks ]
     - else
       %li.selected= c.name
