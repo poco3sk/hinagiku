@@ -26,3 +26,7 @@ end
     done: false
   )
 end
+
+%w( 仕事 生活 趣味 ).each do |name|
+  Category.create(name: name)
+end
