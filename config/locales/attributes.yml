@@ -1,0 +1,5 @@
+ja:
+  activerecord:
+    attributes:
+      task:
+        name: "タスク名"

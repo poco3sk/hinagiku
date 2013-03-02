@@ -17,6 +17,9 @@ class Task < ActiveRecord::Base
   scope :done, where(done: true).order(:due_date)
   scope :undone, where(done: false).order("due_date desc")
 
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :description, length: { maximum: 200 }
+
   def self.search(query)
     where("name like ?", "%#{query}%")
   end

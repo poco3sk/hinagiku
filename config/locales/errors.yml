@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        task:
+          attributes:
+            name:
+              blank: "は必ず入力してください"
