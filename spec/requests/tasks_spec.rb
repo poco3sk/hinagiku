@@ -73,7 +73,7 @@ describe "Tasks", type: :feature do
   describe "update" do
     before do
       @task = Task.find(rand(5) + 1)
-      update_str = "UPDATE TEST"
+      update_str = "UP"
       @task.name += update_str
       @task.due_date += 1.day
       @task.description += update_str
