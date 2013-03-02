@@ -24,7 +24,7 @@ describe TasksController do
   describe "create" do
     before do
       request.env[:HTTP_REFERER] = root_path
-      @params     = { "task" =>
+      @params = { "task" =>
         {
           "name"          => "Task Name",
           "due_date(1i)"  => "2013",
@@ -50,6 +50,41 @@ describe TasksController do
         post :create, @params
 
         response.should render_template(:new)
+      end
+    end
+  end
+
+  describe "update" do
+    before do
+      request.env[:HTTP_REFERER] = root_path
+      @update_task = create(:task)
+      @params = { "task" =>
+        {
+          "name"          => @update_task.name,
+          "due_date(1i)"  => @update_task.due_date.year,
+          "due_date(2i)"  => @update_task.due_date.month,
+          "due_date(3i)"  => @update_task.due_date.day,
+          "done"          => @update_task.done ? 1 : 0,
+          "description"   => @update_task.description
+        }
+      }
+    end
+
+    context "task update" do
+      it "redirect to back" do
+        @params["task"]["name"] = "Update Test"
+        put :update, { id: @update_task.id, task: @params["task"] }
+
+        response.should redirect_to(task_path(assigns(:task)))
+      end
+    end
+
+    context "task not valid" do
+      it "render edit" do
+        @params["task"]["name"] = ""
+        put :update, { id: @update_task.id, task: @params["task"] }
+
+        response.should render_template(:edit)
       end
     end
   end

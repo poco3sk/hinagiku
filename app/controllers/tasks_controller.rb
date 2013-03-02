@@ -38,8 +38,11 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    @task.update_attributes params[:task]
-    redirect_to @task
+    if @task.update_attributes params[:task]
+      redirect_to @task
+    else
+      render :edit
+    end
   end
 
   def destroy
