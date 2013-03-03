@@ -21,7 +21,7 @@ describe TasksController do
       end
     end
 
-    context "not set params nothing" do
+    context "not set params" do
       it "get" do
         get :index
 
@@ -58,6 +58,7 @@ describe TasksController do
   describe "show" do
     it "get" do
       get :show, id: @task.id
+
       assigns(:task).name.should == @task.name
       assigns(:task).description.should == @task.description
     end
