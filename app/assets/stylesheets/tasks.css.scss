@@ -58,3 +58,12 @@ ul#categories {
     font-weight: bold;
   }
 }
+
+form ul.radio_buttons {
+  display: inline-block;
+
+  label {
+    display: inline;
+    float: none;
+  }
+}
