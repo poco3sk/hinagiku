@@ -30,6 +30,31 @@ describe TasksController do
     end
   end
 
+  describe "search" do
+    context "params query name" do
+      before do
+        @name = "Search Name"
+        Task.last.update_attributes({ name: "T #{@name} N", done: false })
+      end
+
+      it "get task name" do
+        get :search, query: @name
+
+        assigns(:tasks).size.should == 1
+        response.should render_template(:index)
+      end
+    end
+
+    context "not set params" do
+      it "get task list" do
+        get :search
+
+        assigns(:tasks).size.should == 5
+        response.should render_template(:index)
+      end
+    end
+  end
+
   describe "show" do
     it "get" do
       get :show, id: @task.id
