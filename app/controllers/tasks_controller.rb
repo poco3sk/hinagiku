@@ -1,21 +1,12 @@
 class TasksController < ApplicationController
+  before_filter :prepare, only: [ :index, :done ]
+
   def index
-    if params[:category_id]
-      @category = Category.find(params[:category_id])
-      @tasks = @category.tasks.undone.page params[:page]
-    else
-      @tasks = Task.undone.page params[:page]
-    end
+    @tasks = @tasks.undone.page params[:page]
   end
 
   def done
-    if params[:category_id]
-      @category = Category.find(params[:category_id])
-      @tasks    = @category.tasks.done.page params[:page]
-    else
-      @tasks = Task.done.page params[:page]
-    end
-
+    @tasks = @tasks.done.page params[:page]
     render :index
   end
 
@@ -72,5 +63,15 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.update_attribute(:done, false)
     redirect_to :back
+  end
+
+  private
+  def prepare
+    if params[:category_id]
+      @category = Category.find(params[:category_id])
+      @tasks = @category.tasks
+    else
+      @tasks = Task
+    end
   end
 end

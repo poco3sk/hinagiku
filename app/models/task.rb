@@ -15,6 +15,8 @@
 class Task < ActiveRecord::Base
   attr_accessible :description, :done, :due_date, :name, :category_id
 
+  belongs_to :category
+
   scope :done, where(done: true).order(:due_date)
   scope :undone, where(done: false).order("due_date desc")
 
