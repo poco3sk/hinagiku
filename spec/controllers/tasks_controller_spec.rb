@@ -72,6 +72,18 @@ describe TasksController do
     end
   end
 
+  describe "edit" do
+    before do
+      @task = Task.last
+    end
+
+    it "get" do
+      get :edit, id: @task.id
+
+      assigns(:task).should == @task
+    end
+  end
+
   describe "create" do
     before do
       request.env[:HTTP_REFERER] = root_path
