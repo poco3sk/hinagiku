@@ -1,4 +1,6 @@
 Hinagiku::Application.routes.draw do
+  get "categories/index"
+
   root to: "tasks#index"
   resources :tasks do
     put :finish, :restart, on: :member

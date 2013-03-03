@@ -1,0 +1,11 @@
+%h1 カテゴリの一覧
+
+= render "menu"
+
+%table.categories
+  %col.name
+  %col.links
+  - @categories.each do |category|
+    %tr
+      %td= category.name
+      %td
