@@ -64,6 +64,14 @@ describe TasksController do
     end
   end
 
+  describe "new" do
+    it "get" do
+      get :new
+
+      assigns(:task).class.should == Task
+    end
+  end
+
   describe "create" do
     before do
       request.env[:HTTP_REFERER] = root_path
