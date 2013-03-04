@@ -1,6 +1,11 @@
 %h1 タスク: #{@task.name}
+
+= render "menu"
+
 - if @task.category
   #task_category= @task.category.name
+
 #task_due_date= @task.due_date
 #task_description= simple_format(@task.description)
-= link_to "タスク一覧へ", :tasks
+
+= link_to "修正", [ :edit, @task ]
