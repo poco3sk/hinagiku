@@ -35,4 +35,48 @@ describe CategoriesController do
       assigns(:category).should == @category
     end
   end
+
+  describe "create" do
+    before do
+      @params = {
+        "category" => {
+          "name" => "Category Sample"
+        }
+      }
+    end
+
+    context "create normally" do
+      it "create category" do
+        post :create, @params
+
+        assigns(:category).should == Category.last
+        Category.count.should == 6
+        response.should redirect_to(categories_path)
+      end
+    end
+
+    context "create abnormally" do
+      it "return form" do
+        @params["category"]["name"] = ""
+        post :create, @params
+
+        Category.count.should == 5
+        response.should render_template(:new)
+      end
+    end
+  end
+
+  describe "destroy" do
+    before do
+      @category = create(:category)
+    end
+
+    it "destroy category" do
+      Category.count.should == 6
+      delete :destroy, id: @category.id
+
+      Category.count.should == 5
+      response.should redirect_to(categories_path)
+    end
+  end
 end
