@@ -13,4 +13,26 @@ describe CategoriesController do
       assigns(:categories).size.should == 5
     end
   end
+
+  describe "new" do
+    it "get" do
+      get :new
+
+      response.should be_success
+      assigns(:category).class.should == Category
+    end
+  end
+
+  describe "edit" do
+    before do
+      @category = Category.last
+    end
+
+    it "get" do
+      get :edit, id: @category.id
+
+      response.should be_success
+      assigns(:category).should == @category
+    end
+  end
 end
