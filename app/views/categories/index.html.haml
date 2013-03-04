@@ -8,4 +8,4 @@
   - @categories.each do |category|
     %tr
       %td= category.name
-      %td
+      %td!= link_for(category)
