@@ -5,8 +5,8 @@ describe CategoriesController do
     5.times { create(:category) }
   end
 
-  describe "GET 'index'" do
-    it "returns http success" do
+  describe "index" do
+    it "get" do
       get :index
 
       response.should be_success
