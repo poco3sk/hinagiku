@@ -1,0 +1,4 @@
+%ul.menu_items
+  %li= link_to_unless params[:action] == "index", "タスクの一覧", :tasks
+  %li= link_to_unless params[:action] == "new", "タスクの新規登録", [ :new, :task ]
+  %li= link_to "カテゴリーの管理", :categories
