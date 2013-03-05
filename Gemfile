@@ -27,11 +27,11 @@ group :test do
   gem 'factory_girl_rails'
   gem 'growl'
   gem 'guard-rspec'
-  gem 'guard-spork'
   gem 'rb-readline'
   gem 'rb-fsevent'
   gem 'rr'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'spring'
   gem 'timecop'
 end
