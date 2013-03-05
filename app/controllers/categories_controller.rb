@@ -11,6 +11,10 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
+  def show
+    redirect_to :categories, status: 301
+  end
+
   def create
     @category = Category.new(params[:category])
 

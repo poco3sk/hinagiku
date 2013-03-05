@@ -79,4 +79,13 @@ describe CategoriesController do
       response.should redirect_to(categories_path)
     end
   end
+
+  describe "show" do
+    it "redirect categories_path" do
+      get :show, id: 1
+
+      response.code.should == "301"
+      response.should redirect_to(categories_path)
+    end
+  end
 end
