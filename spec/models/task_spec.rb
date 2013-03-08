@@ -15,18 +15,27 @@
 require 'spec_helper'
 
 describe Task do
+  before do
+    5.times { create(:category) }
+  end
+
   describe "validations" do
     it { should validate_presence_of(:name) }
     it { should ensure_length_of(:name).is_at_most(20) }
     it { should ensure_length_of(:description).is_at_most(200) }
+    it { should belong_to(:category) }
 
-    context "name blank" do
-      before do
-        @task = build(:task, name: "")
+    describe "check_association" do
+      it "category check ok" do
+        task = build(:task)
+        task.category_id = Category.first.id
+        task.should be_valid
       end
 
-      it  "should require a name" do
-        @task.should_not be_valid
+      it "category check ok" do
+        task = build(:task)
+        task.category_id = Category.maximum(:id) + 1
+        task.should_not be_valid
       end
     end
   end
