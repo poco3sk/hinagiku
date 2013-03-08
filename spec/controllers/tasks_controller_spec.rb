@@ -124,7 +124,7 @@ describe TasksController do
         post :create, @params
 
         response.should render_template(:new)
-        assigns(:task).errors.messages[:base][0].should =~ /指定されたカテゴリは存在しません/
+        assigns(:task).errors.messages[:base][0].should == "指定されたカテゴリは存在しません"
       end
     end
   end
