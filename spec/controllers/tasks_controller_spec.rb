@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'spec_helper'
 
 describe TasksController do
@@ -94,7 +95,8 @@ describe TasksController do
           "due_date(2i)"  => "3",
           "due_date(3i)"  => "2",
           "done"          => "0",
-          "description"   => "Task Description"
+          "description"   => "Task Description",
+          "category_id"   => Category.last.id,
         }
       }
     end
@@ -113,6 +115,16 @@ describe TasksController do
         post :create, @params
 
         response.should render_template(:new)
+      end
+    end
+
+    context "category missing" do
+      it "render new" do
+        Category.last.destroy
+        post :create, @params
+
+        response.should render_template(:new)
+        assigns(:task).errors.messages[:base][0].should =~ /指定されたカテゴリは存在しません/
       end
     end
   end
