@@ -40,7 +40,7 @@ describe CategoriesController do
     before do
       @params = {
         "category" => {
-          "name" => "Category Sample"
+          "name" => "Category"
         }
       }
     end
