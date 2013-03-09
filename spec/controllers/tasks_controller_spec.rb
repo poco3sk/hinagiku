@@ -63,6 +63,13 @@ describe TasksController do
       assigns(:task).name.should == @task.name
       assigns(:task).description.should == @task.description
     end
+
+    it "404 page" do
+      get :show, id: Task.maximum(:id) + 1
+
+      response.status.should == 404
+      response.should render_template("errors/not_found")
+    end
   end
 
   describe "new" do

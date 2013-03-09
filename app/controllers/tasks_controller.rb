@@ -19,6 +19,8 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+  rescue
+    render "errors/not_found", status: 404
   end
 
   def new
