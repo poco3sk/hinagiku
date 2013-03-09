@@ -8,6 +8,8 @@
 #  updated_at :datetime         not null
 #
 
+require 'nkf'
+
 class Category < ActiveRecord::Base
   has_many :tasks, dependent: :nullify
 
@@ -15,4 +17,18 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true, length: { maximum: 10 },
             uniqueness: { case_sensitive: false }
+
+  before_validation :normalize_values
+
+  IDEOGRAPHIC_SPACE = [ 0x3000 ].pack("U")
+  WHITESPACES       = "[\s#{IDEOGRAPHIC_SPACE}]"
+
+  private
+  def normalize_values
+    if name.present?
+      self.name = NKF.nkf("-WwZ", name)
+      self.name = name.sub(/^#{WHITESPACES}+/, "")
+      self.name = name.sub(/#{WHITESPACES}+$/, "")
+    end
+  end
 end
