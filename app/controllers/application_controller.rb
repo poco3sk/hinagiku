@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   private
   def render_404(exception)
+    raise exception if Rails.env.development?
     render "errors/not_found", status: 404
   end
 end
