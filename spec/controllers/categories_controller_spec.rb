@@ -34,6 +34,12 @@ describe CategoriesController do
       response.should be_success
       assigns(:category).should == @category
     end
+
+    it "not found id render 404" do
+      get :edit, id: @category.id + 1
+
+      response.should render_template("errors/not_found")
+    end
   end
 
   describe "create" do
@@ -76,6 +82,12 @@ describe CategoriesController do
       delete :destroy, id: @category.id
 
       Category.count.should == 5
+      response.should redirect_to(categories_path)
+    end
+
+    it "not found id to redirect categories_path" do
+      delete :destroy, id: Category.maximum(:id) + 1
+
       response.should redirect_to(categories_path)
     end
   end
