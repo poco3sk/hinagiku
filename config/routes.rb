@@ -12,4 +12,6 @@ Hinagiku::Application.routes.draw do
       get :done, on: :collection
     end
   end
+
+  match '*anything' => 'errors#not_found'
 end
