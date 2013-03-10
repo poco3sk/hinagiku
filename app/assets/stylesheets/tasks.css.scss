@@ -1,25 +1,44 @@
 // Place all the styles related to the Tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$r: 5px;
+
 .b { font-weight: bold }
 
 table.tasks {
-  width: 560px;
+  width: 530px;
   margin: 5px auto;
   background-color: #eee;
   border-collapse: collapse;
   border-spacing: 0;
 
-  tr {
-    border: solid 1px #ccc;
+  tr:nth-child(even) {
+    background-color: #9dd2de;
+    td:nth-child(2) {
+      background-color: #b3b3b3;
+    }
   }
 
   td {
     padding: 5px;
   }
 
+  td:nth-child(2) {
+    font-size: 90%;
+    text-align: center;
+    color: #444;
+  }
+
+  td:nth-child(3) {
+    text-align: center;
+
+    a {
+      color: #444;
+    }
+  }
+
   col.name {
-    width: 320px;
+    width: 300px;
   }
 
   col.due_date {
@@ -47,23 +66,18 @@ ul#categories {
   list-style: none;
   margin: 15px auto 5px;
   padding: 10px;
-  border: dotted 1px #ccc;
 
   li {
     display: inline;
-    padding: 5px;
+    padding: 5px 10px;
+    border: solid 1px #ccc;
+    border-radius: $r;
+    -moz-border-radius: $r;
+    -webkit-border-radius: $r;
   }
 
   li.selected {
-    font-weight: bold;
-  }
-}
-
-form ul.radio_buttons {
-  display: inline-block;
-
-  label {
-    display: inline;
-    float: none;
+    background-color: #ddd;
+    color: #444;
   }
 }
