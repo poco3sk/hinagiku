@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-table_names = %w( tasks categories )
+table_names = %w( users tasks categories )
 
 table_names.each do |table_name|
   path = Rails.root.join("db", "seeds", Rails.env, "#{table_name}.rb")
