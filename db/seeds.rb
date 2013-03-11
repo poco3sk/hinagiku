@@ -1,41 +1,10 @@
 # -*- coding: utf-8 -*-
-names = [
-  "切手を買う",
-  "報告書を書く",
-  "家賃を払う",
-  "猫の餌を買う",
-  "燃えないゴミを出す"
-]
+table_names = %w( tasks categories )
 
-description = "これは説明です。" * 20
-
-5.times do |n|
-  Task.create(
-    name: names[n],
-    description: description,
-    due_date: (n - 2).days.from_now,
-    done: n.zero?
-  )
+table_names.each do |table_name|
+  path = Rails.root.join("db", "seeds", Rails.env, "#{table_name}.rb")
+  if File.exists?(path)
+    puts "Seeding #{table_name}..."
+    require path
+  end
 end
-
-200.times do |n|
-  Task.create(
-    name: "Task #{n}",
-    description: description,
-    due_date: (n + 2).days.from_now,
-    done: false
-  )
-end
-
-%w( 仕事 生活 趣味 ).each do |name|
-  Category.create(name: name)
-end
-
-tasks = Task.order(:id).limit(5).all
-categories = Category.order(:id).all
-
-categories[1].tasks << tasks[0]
-categories[0].tasks << tasks[1]
-categories[1].tasks << tasks[2]
-categories[1].tasks << tasks[4]
-
