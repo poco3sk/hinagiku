@@ -18,6 +18,7 @@ gem 'rails-i18n'
 group :development, :test do
   gem 'better_errors'
   gem 'rspec-rails'
+  gem 'thin'
 end
 
 group :test do
