@@ -1,5 +1,4 @@
 class TasksController < ApplicationController
-  before_filter :authenticate_user
   before_filter :prepare, only: [ :index, :done ]
 
   def index

@@ -3,14 +3,30 @@ require 'spec_helper'
 describe CategoriesController do
   before do
     5.times { create(:category) }
+    @user = create(:user)
+    controller.stub(:current_user) { @user }
   end
 
   describe "index" do
-    it "get" do
-      get :index
+    context "not login" do
+      before do
+        controller.stub(:current_user) { nil }
+      end
 
-      response.should be_success
-      assigns(:categories).size.should == 5
+      it "redirect session new action" do
+        get :index
+
+        response.should redirect_to(:new_session)
+      end
+    end
+
+    context "login" do
+      it "get" do
+        get :index
+
+        response.should be_success
+        assigns(:categories).size.should == 5
+      end
     end
   end
 
