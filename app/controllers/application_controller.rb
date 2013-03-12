@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def authenticate_user
+    redirect_to [ :new, :session ] unless current_user
+  end
+
   def render_404(exception)
     raise exception if Rails.env.development?
     render "errors/not_found", status: 404

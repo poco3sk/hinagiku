@@ -3,12 +3,26 @@ require 'spec_helper'
 
 describe TasksController do
   before do
+    @user = create(:user)
     2.times { create(:category) }
     5.times { create(:task) }
     @task = Task.find(rand(5) + 1)
+    controller.stub(:current_user) { @user }
   end
 
   describe "index" do
+    context "not login" do
+      before do
+        controller.stub(:current_user) { nil }
+      end
+
+      it "redirect to session new" do
+        get :index
+
+        response.should redirect_to(:new_session)
+      end
+    end
+
     context "set params category_id" do
       before do
         @target_category  = Category.last
