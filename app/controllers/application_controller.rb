@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, with: :render_404
 
   private
+  def current_user
+    return unless session[:user_id]
+    @current_user ||= User.find_by_id(session[:user_id])
+  end
+  helper_method :current_user
+
   def render_404(exception)
     raise exception if Rails.env.development?
     render "errors/not_found", status: 404
