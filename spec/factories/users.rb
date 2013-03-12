@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :user do
-    login_name "MyString"
-    display_name "MyString"
-    password_digest "MyString"
+    login_name "bob"
+    display_name "Bob"
+    password "opensesame!"
   end
 end
