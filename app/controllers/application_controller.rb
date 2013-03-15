@@ -10,8 +10,13 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user
-    return unless session[:user_id]
-    @current_user ||= User.find_by_id(session[:user_id])
+    if session[:user_id]
+      @current_user ||= User.find_by_id(session[:user_id])
+    elsif cookies.signed[:user_id]
+      @current_user ||= User.find_by_id_and_auto_login_token(
+        cookies.signed[:user_id], cookiescookies.signed[:auto_login_token]
+      )
+    end
   end
   helper_method :current_user
 
