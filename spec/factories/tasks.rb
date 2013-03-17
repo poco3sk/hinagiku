@@ -20,5 +20,6 @@ FactoryGirl.define do
     description { "Description\n" * rand(5) }
     due_date { Time.now + rand(100).days }
     done false
+    owner { create(:user) }
   end
 end

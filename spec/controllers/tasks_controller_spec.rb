@@ -4,8 +4,8 @@ require 'spec_helper'
 describe TasksController do
   before do
     @user = create(:user)
-    2.times { create(:category) }
-    5.times { create(:task) }
+    2.times { create(:category, { owner_id: @user.id }) }
+    5.times { create(:task, { owner_id: @user.id }) }
     @task = Task.find(rand(5) + 1)
     controller.stub(:current_user) { @user }
   end
@@ -25,8 +25,8 @@ describe TasksController do
 
     context "set params category_id" do
       before do
-        @target_category  = Category.last
-        Task.last.update_attribute(:category_id, @target_category.id)
+        @target_category  = Category.first
+        Task.where(owner_id: @user.id).last.update_attribute(:category_id, @target_category.id)
       end
 
       it "get category task" do
@@ -153,7 +153,7 @@ describe TasksController do
   describe "update" do
     before do
       request.env[:HTTP_REFERER] = root_path
-      @update_task = create(:task)
+      @update_task = create(:task, owner: @user)
       @params = { "task" =>
         {
           "name"          => @update_task.name,
@@ -209,8 +209,8 @@ describe TasksController do
   describe "done" do
     before do
       @target_category = Category.first
-      Task.first.update_attribute(:done, true)
-      Task.last.update_attributes({ done: true, category_id: @target_category.id })
+      Task.first.update_attributes({ done: true, owner: @user })
+      Task.last.update_attributes({ done: true, owner: @user, category_id: @target_category.id })
     end
 
     context "set params category_id" do
@@ -233,7 +233,7 @@ describe TasksController do
   describe "restart" do
     before do
       @task = Task.find(rand(5) + 1)
-      @task.update_attribute(:done, true)
+      @task.update_attributes({ done: true, owner: @user })
     end
 
     it "restart task" do

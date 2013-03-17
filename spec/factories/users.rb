@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :user do
-    login_name "bob"
-    display_name "Bob"
+    sequence(:login_name) { |n| "name #{n}" }
+    sequence(:display_name) { |n| "Name #{n}" }
     password "opensesame!"
   end
 end

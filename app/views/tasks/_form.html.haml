@@ -5,7 +5,7 @@
     %li
       = form.label :name
       = form.text_field :name
-    - if Category.all.present?
+    - if current_user.categories.present?
       %li
         = form.label :category_id
         =# form.select :category_id, category_options

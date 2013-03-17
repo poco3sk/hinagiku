@@ -16,7 +16,8 @@ require 'spec_helper'
 
 describe Task do
   before do
-    5.times { create(:category) }
+    @user = create(:user)
+    5.times { create(:category, { owner_id: @user.id }) }
   end
 
   describe "validations" do
@@ -27,13 +28,13 @@ describe Task do
 
     describe "check_association" do
       it "category check ok" do
-        task = build(:task)
+        task = build(:task, { owner_id: @user.id })
         task.category_id = Category.first.id
         task.should be_valid
       end
 
       it "category check ok" do
-        task = build(:task)
+        task = build(:task, { owner_id: @user.id })
         task.category_id = Category.maximum(:id) + 1
         task.should_not be_valid
       end

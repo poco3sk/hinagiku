@@ -13,9 +13,10 @@
 #
 
 class Task < ActiveRecord::Base
-  attr_accessible :description, :done, :due_date, :name, :category_id
+  attr_accessible :description, :done, :due_date, :name, :category_id, :owner
 
   belongs_to :category
+  belongs_to :owner, class_name: "User"
 
   scope :done, where(done: true).order(:due_date)
   scope :undone, where(done: false).order("due_date desc")
@@ -30,7 +31,7 @@ class Task < ActiveRecord::Base
 
   private
   def check_association
-    if category_id && !Category.where(id: category_id).exists?
+    if category_id && !owner.categories.where(id: category_id).exists?
       errors.add(:base, :missing_category)
       self.category_id = nil
     end

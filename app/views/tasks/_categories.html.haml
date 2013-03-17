@@ -4,7 +4,7 @@
     %li= link_to "全部", [ action, :tasks ]
   - else
     %li.selected 全部
-  - Category.all.each do |c|
+  - current_user.categories.each do |c|
     - if @category != c
       %li= link_to c.name, [ action, c, :tasks ]
     - else

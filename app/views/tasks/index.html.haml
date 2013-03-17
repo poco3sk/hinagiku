@@ -6,7 +6,7 @@
   = text_field_tag :query, params[:query]
   = submit_tag "検索"
 
-= render "categories" if Category.all.present?
+= render "categories" if current_user.categories.present?
 
 = render "navigation"
 

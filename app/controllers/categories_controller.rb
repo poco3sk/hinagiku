@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(params[:category])
+    @category.owner = current_user
 
     if @category.save
       redirect_to :categories

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+alice = User.find_by_login_name("alice")
+bob = User.find_by_login_name("bob")
+
 names = [
   "切手を買う",
   "報告書を書く",
@@ -14,7 +17,8 @@ description = "これは説明です。" * 20
     name: names[n],
     description: description,
     due_date: (n - 2).days.from_now,
-    done: n.zero?
+    done: n.zero?,
+    owner: alice,
   )
 end
 
@@ -23,6 +27,7 @@ end
     name: "Task #{n}",
     description: description,
     due_date: (n + 2).days.from_now,
-    done: false
+    done: false,
+    owner: bob,
   )
 end
